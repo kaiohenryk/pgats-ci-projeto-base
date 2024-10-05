@@ -4,25 +4,22 @@
 name: 'Execução Agendada'
 
 # regras de disparo da execução (triggers)
-  # gatilho de exec agendada no github actions = schedule
+# gatilho de exec agendada no github actions = schedule
 
 on:
   schedule:
     - cron: '15 20 * * 6'
 
 jobs:
-
   # descrição do job
   e2e-tests:
-
     # máquina que o job vai executar
     runs-on: ['ubuntu-latest']
-    
+
     # passo a passo da ações do job
     steps:
-
       - uses: actions/checkout@v4
-      
+
       - name: Instalando Yarn
         run: npm install -g yarn
 
@@ -34,7 +31,7 @@ jobs:
 
       - name: Testes E2E (end-to-end)
         run: yarn run e2e
-     
+
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:

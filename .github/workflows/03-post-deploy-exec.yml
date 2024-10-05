@@ -4,7 +4,7 @@
 name: 'Execução por Deploy'
 
 # regras de disparo da execução (triggers)
-  # gatilho de exec após outro worflow no github actions = workflow_run
+# gatilho de exec após outro worflow no github actions = workflow_run
 
 on:
   workflow_run:
@@ -13,20 +13,17 @@ on:
       - completed
 
 jobs:
-
   # descrição do job
   e2e-tests:
-
     # máquina que o job vai executar
     runs-on: ['ubuntu-latest']
-    
+
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    
+
     # passo a passo da ações do job
     steps:
-
       - uses: actions/checkout@v4
-      
+
       - name: Instalando Yarn
         run: npm install -g yarn
 
@@ -38,7 +35,7 @@ jobs:
 
       - name: Testes E2E (end-to-end)
         run: yarn run e2e
-     
+
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
