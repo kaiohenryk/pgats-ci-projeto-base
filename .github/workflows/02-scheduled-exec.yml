@@ -8,7 +8,7 @@ name: 'Execução Agendada'
 
 on:
   schedule:
-    - cron: '30 19 * * 6'
+    - cron: '40 13 * * 6'
 
 jobs:
 
