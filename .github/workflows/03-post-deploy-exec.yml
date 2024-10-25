@@ -1,4 +1,4 @@
-# CI de nível 01 - Disparo automático sempre que outro for concluído, como deploy
+# CI de nível 03 - Disparo automático sempre que outro for concluído, como deploy
 
 # Nome que vai aparecer nas opções de pipe
 name: 'Execução por Deploy'

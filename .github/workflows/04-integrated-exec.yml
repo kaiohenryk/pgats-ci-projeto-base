@@ -1,16 +1,39 @@
-# CI de nível 02 - Disparo automático em períodos definidos
+# CI de nível 04 - Disparo dentro do fluxo de CI de desenvolvimento
 
 # Nome que vai aparecer nas opções de pipe
-name: 'Execução Agendada'
+name: 'Execução Integrada'
 
 # regras de disparo da execução (triggers)
-# gatilho de exec agendada no github actions = schedule
+# gatilho de exec manual no github actions = workflow_dispatch
 
 on:
-  schedule:
-    - cron: '15 20 * * 6'
+  workflow_dispatch:
+
+# inspecao
+#	  padronizacao (formatacao de código)
+# testes
+#	  unidade
+#	  e2e
+#		  build
+# deploy
 
 jobs:
+
+  inspection:
+    runs-on: ['ubuntu-latest']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalando Yarn
+        run: npm install -g yarn
+
+      - name: Instalando dependências
+        run: yarn
+      
+      - name: Padronizacao de codigo (Lint)
+        run: yarn lint
+
   # descrição do job
   e2e-tests:
     # máquina que o job vai executar
